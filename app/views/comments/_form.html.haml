@@ -1,0 +1,9 @@
+= form_for comment, remote: true do |f|
+  = f.hidden_field :commentable_id
+  = f.hidden_field :commentable_type
+  = f.hidden_field :user_id
+
+  .control-group
+    .controls
+      = f.text_area :content, class: 'input-block-level', rows: 6
+    = f.submit nil, :class => 'btn btn-primary btn-small'

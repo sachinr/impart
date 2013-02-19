@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(:version => 20130218222150) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.text     "content"
-    t.integer  "votes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "ups"
+    t.integer  "downs"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "post_votes", :force => true do |t|
@@ -34,14 +36,15 @@ ActiveRecord::Schema.define(:version => 20130218222150) do
     t.string   "url"
     t.text     "description"
     t.integer  "votes"
+    t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "username"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"

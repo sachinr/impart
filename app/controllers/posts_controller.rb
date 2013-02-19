@@ -3,11 +3,26 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :only => ['new', 'create', 'edit', 'update']
 
   def index
-    @posts = Post.order('created_at DESC').all
+    @posts = Post.all_ranked
   end
 
   def latest
     @posts = Post.order('created_at DESC').all
     render 'index'
+  end
+
+  def create
+    @post = current_user.posts.new(params[:post])
+    if @post.save!
+      flash[:notice] = 'Successfully created post'
+      render :show
+    end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id,
+                           user_id: current_user.id)
+    @comments = @post.comments
   end
 end

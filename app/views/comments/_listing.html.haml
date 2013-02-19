@@ -1,0 +1,7 @@
+- comments.each do |comment|
+  %ul.comment-list
+    %li.comment-displayed
+      .comment-content
+        %p= comment.content
+      = render 'comments/form', comment: Comment.new(commentable_type: 'Comment', commentable_id: comment.id, user_id: comment.user_id)
+      = render 'comments/listing', comments: comment.comments
