@@ -21,8 +21,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id,
-                           user_id: current_user.id)
+    @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id)
     @comments = @post.comments
   end
 end

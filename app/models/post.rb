@@ -29,7 +29,9 @@ class Post < ActiveRecord::Base
 
   def comment_count
     total = comments.count
-    total += comments.map{ |c| c.comments.count }.inject(:+)[0]
+    if total > 0
+      total += comments.map{ |c| c.comments.count }.inject(:+)[0]
+    end
   end
 
   private

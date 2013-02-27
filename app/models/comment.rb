@@ -5,7 +5,9 @@ class Comment < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
-  attr_accessible :content, :user_id, :commentable_type, :commentable_id
+  attr_accessible :content, :user, :commentable_type, :commentable_id
+
+  validates :user, presence: true
 
   def confidence(ups, downs)
     n = ups + downs
