@@ -1,9 +1,15 @@
 %ul.comment-list
   %li.comment-displayed
     .comment-content
-      %b= comment.user.email
-      %span= time_ago_in_words(comment.created_at)
-      %p= comment.content
-      =link_to 'reply', '#', class: 'js-reply-link', 'data-commentable-id' => comment.id
+      .comment-actions
+        = link_to 'upvote', '#', class: 'js-comment-vote', 'data-comment-id' => comment.id, 'data-direction' => 'up'
+        = link_to 'downvote', '#', class: 'js-comment-vote', 'data-comment-id' => comment.id, 'data-direction' => 'down'
+        = "(#{comment.ups}) (#{comment.downs})"
+      .user-avatar
+      .comment-main
+        %b= comment.user.email
+        %span= time_ago_in_words(comment.created_at)
+        %p= comment.content
+        =link_to 'reply', '#', class: 'js-reply-link', 'data-commentable-id' => comment.id
 
     = render 'comments/listing', comments: comment.comments

@@ -16,11 +16,16 @@ class Post < ActiveRecord::Base
     all.sort { |a, b| b.rank <=> a.rank }
   end
 
-  def upvote
-    self.votes ||= 0
-    self.votes += 1
-
-    self.save!
+  def upvote(user)
+    post_vote = PostVote.find_or_initialize_by_post_id_and_user_id(id, user.id)
+    if post_vote.new_record?
+      self.votes ||= 0
+      self.votes += 1
+      return post_vote.save && self.save!
+    else
+      self.votes -= 1
+      return post_vote.delete && self.save!
+    end
   end
 
   def rank(gravity = 1.8)
@@ -30,8 +35,10 @@ class Post < ActiveRecord::Base
   def comment_count
     total = comments.count
     if total > 0
-      total += comments.map{ |c| c.comments.count }.inject(:+)[0]
+      total += comments.map{ |c| c.comment_count }.inject(:+)
     end
+
+    total
   end
 
   private

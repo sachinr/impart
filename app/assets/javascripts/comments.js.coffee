@@ -19,3 +19,13 @@ $ ->
     $.post(form.attr('action'), form.serialize()).done (data) ->
       form.replaceWith(data)
 
+  $(document).on 'click', '.js-comment-vote', (e) ->
+    e.preventDefault()
+    element = $(e.target)
+    direction = element.data('direction')
+    commentId = element.data('comment-id')
+
+    $.post "/comments/#{commentId}/comment_votes", {direction: direction}, ->
+      alert "success"
+    .fail (xhr) ->
+      console.log $.parseJSON(xhr.responseText).errors

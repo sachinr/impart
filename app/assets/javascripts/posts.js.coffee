@@ -2,7 +2,7 @@ $ ->
   $('.js_upvote').click (e) ->
     element = $(e.target)
     hostname = document.location.hostname
-    postId = element.data('postId')
+    postId = element.data('post-id')
 
     $.post "posts/#{postId}/post_votes", ->
       alert "success"

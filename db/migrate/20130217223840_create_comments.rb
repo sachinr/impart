@@ -5,8 +5,8 @@ class CreateComments < ActiveRecord::Migration
       t.integer :commentable_id
       t.string  :commentable_type
       t.text    :content
-      t.integer :ups
-      t.integer :downs
+      t.integer :ups, default: 0
+      t.integer :downs, default: 0
 
       t.timestamps
     end

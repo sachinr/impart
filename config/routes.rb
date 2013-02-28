@@ -5,7 +5,9 @@ Votes::Application.routes.draw do
     resources :post_votes, only: [:create, :destroy]
   end
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:create] do
+    resources :comment_votes, only: [:create, :destroy]
+  end
 
   match 'new' => 'posts#latest'
   root :to => "posts#index"

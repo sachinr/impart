@@ -1,0 +1,39 @@
+user_id
+comment_id
+value
+
+WHERE AM I? Need to create comment_vote table
+
+            comment.vote(type, user)
+              case type
+              when up
+                self.upvote(user)
+              when down
+                self.downvote(user)
+              end
+            end
+
+comment/12/comment_votes/create
+comment.upvote(current_user)
+
+comment_vote = comment.comment_votes.find_or_initialize_by_user(current_user)
+if comment_vote.new_record?
+  comment_vote.score = 1
+  comment.upvotes += 1
+else
+  comment_vote.delete
+end
+
+
+comment/12/comment_votes/create
+comment.downvote(current_user)
+
+comment_vote = comment.comment_votes.find_or_initialize(user: current_user)
+if comment_vote.new_record?
+  comment_vote.score = 1
+  comment.downvotes += 1
+else
+  comment_vote.delete
+end
+
+
