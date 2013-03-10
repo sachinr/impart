@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
     if post_vote.new_record?
       self.votes ||= 0
       self.votes += 1
-      return post_vote.save && self.save!
+      return post_vote.save! && self.save!
     else
       self.votes -= 1
       return post_vote.delete && self.save!

@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(:version => 20130228195805) do
     t.string   "title"
     t.string   "url"
     t.text     "description"
-    t.integer  "votes"
+    t.integer  "votes",       :default => 1
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,13 @@
+%tr
+  %td
+    %span.post_votes= post.votes
+    = link_to 'upvote', '#', class: 'js_upvote', 'data-post-id' => post.id
+  %td
+    %h3
+      = link_to post.title, post_path(post)
+      %span.url= "(#{post.url})"
+    %span.age= "#{time_ago_in_words(post.created_at)} by #{post.user.email}, #{pluralize(post.comment_count, 'comment')}"
+
+  %td
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-mini'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

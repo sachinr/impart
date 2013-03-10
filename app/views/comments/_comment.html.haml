@@ -11,5 +11,7 @@
         %span= time_ago_in_words(comment.created_at)
         %p= comment.content
         =link_to 'reply', '#', class: 'js-reply-link', 'data-commentable-id' => comment.id
+        - if comment.user == current_user
+          = link_to 'delete', '#'
 
     = render 'comments/listing', comments: comment.comments

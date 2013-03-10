@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require markdown.converter
+//= require markdown.sanitizer
+//= require markdown.editor
 //= require vendor
 //= require_tree .

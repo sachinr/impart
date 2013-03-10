@@ -17,7 +17,8 @@ $ ->
     element = $(e.target)
     form = element.parents('form:first')
     $.post(form.attr('action'), form.serialize()).done (data) ->
-      form.replaceWith(data)
+      if form.parents('post-comment-form').length == 0
+        form.after(data)
 
   $(document).on 'click', '.js-comment-vote', (e) ->
     e.preventDefault()

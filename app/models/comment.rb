@@ -9,6 +9,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :content, :user, :commentable_type, :commentable_id
 
   validates :user, presence: true
+  validates :content, presence: true
 
   def confidence(ups, downs)
     n = ups + downs

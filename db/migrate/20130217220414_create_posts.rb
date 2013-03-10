@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     t.string :title
     t.string :url
     t.text :description
-    t.integer :votes
+    t.integer :votes, default: 1
     t.integer :user_id
     t.timestamps
   end
