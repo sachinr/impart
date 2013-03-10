@@ -6,9 +6,16 @@ class CommentsController < ApplicationController
     comment = Comment.new(params[:comment])
     comment.user = current_user
     if comment.save!
-      render(:partial => "comment", :layout => false, :locals => {:comment => comment})
+      render(partial: "comment", layout: false, locals: {comment: comment})
     else
-      render :json => { :errors => comment.errors.full_messages }, :status => 422
+      render json: { errors: comment.errors.full_messages }, status: 422
+    end
+  end
+
+  def destroy
+    comment = current_user.comments.find(params[:id])
+    if comment.delete!
+      render(partial: 'deleted_comment', layout: false, locals: {comment: comment})
     end
   end
 end

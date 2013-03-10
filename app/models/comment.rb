@@ -11,6 +11,15 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :content, presence: true
 
+  def deleted?
+    deleted
+  end
+
+  def delete!
+    self.deleted = true
+    self.save!
+  end
+
   def confidence(ups, downs)
     n = ups + downs
 

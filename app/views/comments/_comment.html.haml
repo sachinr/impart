@@ -10,8 +10,8 @@
         %b= comment.user.email
         %span= time_ago_in_words(comment.created_at)
         %p= comment.content
-        =link_to 'reply', '#', class: 'js-reply-link', 'data-commentable-id' => comment.id
+        =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
         - if comment.user == current_user
-          = link_to 'delete', '#'
+          = link_to 'delete', '#', class: 'js-comment-delete-link', 'data-commentable-id' => comment.id
 
     = render 'comments/listing', comments: comment.comments

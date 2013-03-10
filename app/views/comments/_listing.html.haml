@@ -1,2 +1,5 @@
 - comments.each do |comment|
-  =render 'comments/comment', comment: comment
+  - if comment.deleted?
+    =render 'comments/deleted_comment', comment: comment
+  - else
+    =render 'comments/comment', comment: comment

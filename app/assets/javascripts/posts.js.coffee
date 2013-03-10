@@ -9,7 +9,7 @@ $ ->
     .fail (xhr) ->
       console.log $.parseJSON(xhr.responseText).errors
 
-  converter = Markdown.getSanitizingConverter()
-  if converter?
+  if $(".wmd-panel").length > 0
+    converter = Markdown.getSanitizingConverter()
     editor = new Markdown.Editor(converter)
     editor.run()

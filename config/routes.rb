@@ -5,7 +5,7 @@ Votes::Application.routes.draw do
     resources :post_votes, only: [:create, :destroy]
   end
 
-  resources :comments, only: [:create] do
+  resources :comments, only: [:create, :destroy] do
     resources :comment_votes, only: [:create, :destroy]
   end
 

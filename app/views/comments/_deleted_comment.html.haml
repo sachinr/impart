@@ -1,0 +1,8 @@
+%ul.comment-list
+  %li.comment-displayed
+    .comment-content
+      %b [deleted]
+      %p Comment removed
+      =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
+
+    = render 'comments/listing', comments: comment.comments

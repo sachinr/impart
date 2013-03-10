@@ -1,5 +1,5 @@
 $ ->
-  $('.js-reply-link').click (e) ->
+  $('.js-comment-reply-link').click (e) ->
     e.preventDefault()
     element = $(e.target)
     element.toggleClass('hasForm')
@@ -12,13 +12,25 @@ $ ->
     else
       element.next('form:first').remove()
 
+  $('.js-comment-delete-link').click (e) ->
+    e.preventDefault()
+    element = $(e.target)
+    commentId = element.data('commentable-id')
+    if confirm('Are you sure?')
+      $.ajax(
+        type: 'DELETE'
+        url: "/comments/#{commentId}"
+        dataType: 'JSON').done(window.location.reload())
+
   $(document).on 'click', '.js_comment_submit_button',  (e) ->
     e.preventDefault()
     element = $(e.target)
     form = element.parents('form:first')
     $.post(form.attr('action'), form.serialize()).done (data) ->
-      if form.parents('post-comment-form').length == 0
+      if form.parents('.post-comment-form').length > 0
         form.after(data)
+      else
+        form.replaceWith(data)
 
   $(document).on 'click', '.js-comment-vote', (e) ->
     e.preventDefault()
