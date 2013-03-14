@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   after_create :initial_post_vote
 
-  def self.all_ranked
+  def self.sort_by_rank
     all.sort { |a, b| b.rank <=> a.rank }
   end
 

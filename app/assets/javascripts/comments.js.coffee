@@ -1,5 +1,5 @@
 $ ->
-  $('.js-comment-reply-link').click (e) ->
+  $(document).on 'click', '.js-comment-reply-link', (e) ->
     e.preventDefault()
     element = $(e.target)
     element.toggleClass('hasForm')
@@ -12,7 +12,7 @@ $ ->
     else
       element.next('form:first').remove()
 
-  $('.js-comment-delete-link').click (e) ->
+  $(document).on 'click', '.js-comment-delete-link', (e) ->
     e.preventDefault()
     element = $(e.target)
     commentId = element.data('commentable-id')

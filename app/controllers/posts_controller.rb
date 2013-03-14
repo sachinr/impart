@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :only => ['new', 'create', 'edit', 'update']
 
   def index
-    @posts = Post.all_ranked
+    @posts = Post.sort_by_rank
   end
 
   def latest
@@ -22,6 +22,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id)
-    @comments = @post.comments
+    @comments = @post.comments.sort_by_score
   end
 end
