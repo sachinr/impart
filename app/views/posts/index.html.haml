@@ -1,14 +1,6 @@
-- model_class = Post
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%h4 Latest Posts
+
 %table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:votes)
-      %th= model_class.human_attribute_name(:title)
-      %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @posts.each do |post|
       = render 'post', post: post
-
-= link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary'

@@ -1,7 +1,9 @@
 %tr
   %td
-    %span.post_votes= post.votes
-    = link_to 'upvote', '#', class: 'js_upvote', 'data-post-id' => post.id
+    %span.post_votes.pull-left
+      = post.votes
+      %a.upvote.js_upvote{ 'data-post-id' => post.id, href: '#' }
+        %i.icon-arrow-up
   %td
     %h3
       = link_to post.title, post_path(post)
