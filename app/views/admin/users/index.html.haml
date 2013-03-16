@@ -1,0 +1,9 @@
+%h4 Users
+
+%table.table.table-striped
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.role
+        %td= user.confirmed?

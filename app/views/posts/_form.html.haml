@@ -6,7 +6,7 @@
   .control-group
     = f.label :url, :class => 'control-label'
     .controls
-      = f.text_field :url, :class => 'text_field'
+      = f.url_field :url, :class => 'text_field', value: 'http://'
   .control-group
     = f.label :description, :class => 'control-label'
     .controls.wmd-panel

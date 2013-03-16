@@ -34,11 +34,11 @@ $ ->
 
   $(document).on 'click', '.js-comment-vote', (e) ->
     e.preventDefault()
-    element = $(e.target)
+    element = $(e.target).parent('a')
     direction = element.data('direction')
     commentId = element.data('comment-id')
 
     $.post "/comments/#{commentId}/comment_votes", {direction: direction}, ->
-      alert "success"
+      console.log 'Success'
     .fail (xhr) ->
       console.log $.parseJSON(xhr.responseText).errors

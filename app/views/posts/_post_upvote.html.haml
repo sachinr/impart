@@ -1,0 +1,5 @@
+%span.post_votes.pull-left
+  %span.upvote_count
+    = post.votes
+  %a.upvote.js_upvote{ 'data-post-id' => post.id, href: '#' }
+    %i.icon-arrow-up

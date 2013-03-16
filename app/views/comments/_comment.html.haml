@@ -2,16 +2,19 @@
   %li.comment-displayed
     .comment-content
       .comment-actions
-        = link_to 'upvote', '#', class: 'js-comment-vote', 'data-comment-id' => comment.id, 'data-direction' => 'up'
-        = link_to 'downvote', '#', class: 'js-comment-vote', 'data-comment-id' => comment.id, 'data-direction' => 'down'
-        = "(#{comment.ups}) (#{comment.downs})"
+        %a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, 'data-direction' => 'up'}
+          %i.icon-arrow-up
+        %a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, 'data-direction' => 'down'}
+          %i.icon-arrow-down
       .user-avatar
       .comment-main
-        %b= comment.user.email
-        %span= time_ago_in_words(comment.created_at)
+        %b= comment.user_name
+        %span= "#{time_ago_in_words(comment.created_at)} ago"
+        %small= "(#{comment.ups}) (#{comment.downs})"
         %p= comment.content
-        - if comment.user == current_user
+        - if comment.can_be_edited_by(current_user)
           = link_to 'delete', '#', class: 'js-comment-delete-link', 'data-commentable-id' => comment.id
-        =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
+        - if current_user
+          =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
 
     = render 'comments/listing', comments: comment.comments.sort { |a, b| b.score <=> a.score }

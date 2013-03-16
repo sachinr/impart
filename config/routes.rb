@@ -9,7 +9,11 @@ Votes::Application.routes.draw do
     resources :comment_votes, only: [:create, :destroy]
   end
 
-  match 'new' => 'posts#latest'
+  namespace :admin do
+    resources :users
+  end
+
+  match 'latest' => 'posts#latest', as: 'latest_posts'
   root :to => "posts#index"
 
   # The priority is based upon order of creation:

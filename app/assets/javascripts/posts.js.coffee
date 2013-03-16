@@ -1,11 +1,11 @@
 $ ->
   $('.js_upvote').click (e) ->
-    element = $(e.target)
+    element = $(e.target).parent('a')
     hostname = document.location.hostname
     postId = element.data('post-id')
 
     $.post "/posts/#{postId}/post_votes", (data) ->
-      element.siblings('.post_votes').html(data)
+      element.siblings('.upvote_count').html(data)
     .fail (xhr) ->
       console.log $.parseJSON(xhr.responseText).errors
 

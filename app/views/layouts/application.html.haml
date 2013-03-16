@@ -19,7 +19,13 @@
           / Everything you want hidden at 940px or less, place within here
           .nav-collapse.collapse.navbar-responsive-collapse
             %ul.nav
-              %li.active
+              %li{class: active_class('posts', 'index')}
+                = link_to 'Top', root_url
+              %li{class: active_class('posts', 'latest')}
+                = link_to 'Latest', latest_posts_url
+              - if admin_user?
+                %li{class: active_class('admin/users', 'index')}
+                  = link_to 'Users', admin_users_path
             %ul.nav.pull-right
               - if current_user
                 %li.dropdown
@@ -30,19 +36,22 @@
                     %li
                       = link_to 'Logout', destroy_user_session_path, method: 'delete'
                     %li
-                      %a{:href => "#"} Edit Profile
+                      = link_to 'Edit Profile', edit_user_registration_path
                     %li.divider
                     %li
                       %a{:href => "#"} Karma
               - else
-                %li
-                  = link_to 'Login / Signup', new_user_session_path
+                %li{class: active_class('devise/sessions', 'new')}
+                  = link_to 'Login', new_user_session_path
+                %li{class: active_class('devise/registrations', 'new')}
+                  = link_to 'Create account', new_user_registration_path
               %li
                 %form.navbar-form
                   =link_to 'New Post', new_post_path, class: "btn btn-primary"
     .container
       - flash.each do |name, msg|
         %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} Ã
+          %a.close{"data-dismiss" => "alert"}
+            %i.icon-remove-sign
           = content_tag :div, msg, :id => "flash_#{name}"
       = yield

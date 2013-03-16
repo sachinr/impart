@@ -8,9 +8,16 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :url,   presence: true
-  validates :user,  presence: true
 
   after_create :initial_post_vote
+
+  def user_name
+    if user
+      user.email
+    else
+      '[delete]'
+    end
+  end
 
   def self.sort_by_rank
     all.sort { |a, b| b.rank <=> a.rank }
@@ -39,6 +46,10 @@ class Post < ActiveRecord::Base
     end
 
     total
+  end
+
+  def can_be_edited_by(editor)
+    editor && (editor == user || editor.admin?)
   end
 
   private

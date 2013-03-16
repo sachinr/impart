@@ -8,8 +8,15 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :content, :user, :commentable_type, :commentable_id
 
-  validates :user, presence: true
   validates :content, presence: true
+
+  def user_name
+    if user
+      user.email
+    else
+      '[delete]'
+    end
+  end
 
   def self.sort_by_score
     all.sort { |a, b| b.score <=> a.score }
@@ -94,5 +101,9 @@ class Comment < ActiveRecord::Base
     end
 
     self.save
+  end
+
+  def can_be_edited_by(editor)
+    editor && (editor == user || editor.admin?)
   end
 end
