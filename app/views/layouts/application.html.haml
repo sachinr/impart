@@ -24,7 +24,7 @@
               %li{class: active_class('posts', 'latest')}
                 = link_to 'Latest', latest_posts_url
               %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", class: active_class('posts', 'top')}
                   Top
                   %b.caret
                 %ul.dropdown-menu
