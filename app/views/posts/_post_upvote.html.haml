@@ -1,5 +1,6 @@
+- upvote_class = current_user && post.post_votes.present? ? 'voted' : ''
 %span.post_votes.pull-left
   %span.upvote_count
     = post.votes
-  %a.upvote.js_upvote{ 'data-post-id' => post.id, href: '#', class: post.post_votes.present? ? 'voted' : '' }
+  %a.upvote.js_upvote{ 'data-post-id' => post.id, href: '#', class: upvote_class }
     %i.icon-arrow-up

@@ -13,18 +13,48 @@ class Post < ActiveRecord::Base
 
   def user_name
     if user
-      user.email
+      user.username
     else
       '[delete]'
     end
   end
 
   def self.all_with_user_votes(user)
-    posts = Post.joins("LEFT OUTER JOIN post_votes
-               ON post_votes.post_id = posts.id
-               AND post_votes.user_id = #{user.id}").all
-
+    posts = with_user_votes(user).all
     sort_collection_by_rank(posts)
+  end
+
+  def self.latest_with_user_votes(user)
+    posts = with_user_votes(user)
+    posts.order('posts.created_at DESC').all
+  end
+
+  def self.top_with_user_votes(user, period = nil)
+    posts = with_user_votes(user)
+
+    if period && period != 'all'
+      min_created_at = case period
+      when 'today'
+        1.day.ago
+      when 'week'
+        1.week.ago
+      when 'month'
+        1.month.ago
+      end
+      posts = posts.where('posts.created_at >= ?', min_created_at)
+    end
+
+    posts.order('posts.votes DESC').all
+  end
+
+  def self.with_user_votes(user)
+    if user
+      joins("LEFT OUTER JOIN post_votes
+             ON post_votes.post_id = posts.id
+             AND post_votes.user_id = #{user.id}")
+    else
+      self
+    end
   end
 
   def self.sort_by_rank
@@ -48,7 +78,7 @@ class Post < ActiveRecord::Base
   end
 
   def rank(gravity = 1.8)
-    (votes - 1) / ((item_hour_age+2) ** gravity)
+    votes / ((item_hour_age+2) ** gravity)
   end
 
   def comment_count

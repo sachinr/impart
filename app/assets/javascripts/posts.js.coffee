@@ -8,6 +8,8 @@ $ ->
       element.toggleClass('voted')
       element.siblings('.upvote_count').html(data)
     .fail (xhr) ->
+      if xhr.status == 401
+        window.location.pathname = '/users/sign_in/'
       console.log $.parseJSON(xhr.responseText).errors
 
   if $(".wmd-panel").length > 0

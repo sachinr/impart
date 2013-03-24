@@ -4,6 +4,10 @@
   = devise_error_messages!
   .form-horizontal
     .control-group
+      = f.label :name, class: 'control-label'
+      .controls
+        = f.text_field :username
+    .control-group
       = f.label :email, class: 'control-label'
       .controls
         = f.email_field :email
@@ -11,10 +15,10 @@
       = f.label :password, class: 'control-label'
       .controls
         = f.password_field :password, :autocomplete => "off"
-    .control-group
-      = f.label :password_confirmation, class: 'control-label'
-      .controls
-        = f.password_field :password_confirmation, :autocomplete => "off"
+    -#.control-group
+      -#= f.label :password_confirmation, class: 'control-label'
+      -#.controls
+        -#= f.password_field :password_confirmation, :autocomplete => "off"
 
     .form-actions
       =f.submit "Sign up", class: 'btn btn-primary'

@@ -41,4 +41,6 @@ $ ->
     $.post "/comments/#{commentId}/comment_votes", {direction: direction}, (data) ->
       element.parents('ul:first').replaceWith(data)
     .fail (xhr) ->
+      if xhr.status == 401
+        window.location.pathname = '/users/sign_in/'
       console.log $.parseJSON(xhr.responseText).errors

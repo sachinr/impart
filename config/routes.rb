@@ -16,6 +16,7 @@ Votes::Application.routes.draw do
   end
 
   match 'latest' => 'posts#latest', as: 'latest_posts'
+  match 'top/:period' => 'posts#top', as: 'top_posts'
   root :to => "posts#index"
 
   # The priority is based upon order of creation:

@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
 
   def user_name
     if user
-      user.email
+      user.username
     else
       '[delete]'
     end

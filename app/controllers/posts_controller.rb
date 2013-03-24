@@ -3,11 +3,19 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :only => ['new', 'create', 'edit', 'update']
 
   def index
+    @title = 'Hot Posts'
     @posts = Post.all_with_user_votes(current_user)
   end
 
   def latest
-    @posts = Post.order('created_at DESC').all
+    @title = 'Latest Posts'
+    @posts = Post.latest_with_user_votes(current_user)
+    render 'index'
+  end
+
+  def top
+    @title = 'Top Posts'
+    @posts = Post.top_with_user_votes(current_user, params[:period])
     render 'index'
   end
 

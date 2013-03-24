@@ -23,23 +23,36 @@
                 = link_to 'Hot', root_url
               %li{class: active_class('posts', 'latest')}
                 = link_to 'Latest', latest_posts_url
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Top
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to 'Today', top_posts_url(period: :today)
+                  %li
+                    = link_to 'This week', top_posts_url(period: :week)
+                  %li
+                    = link_to 'This month', top_posts_url(period: :month)
+                  %li
+                    = link_to 'All time', top_posts_url(period: :all)
               - if admin_user?
                 %li{class: active_class('admin/users', 'index')}
                   = link_to 'Users', admin_users_path
+
             %ul.nav.pull-right
               - if current_user
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    = current_user.email
+                    = current_user.username
+                    %span.badge{'data-toggle' => 'tooltip', title: "Karma (post | comment)"}
+                      = "#{current_user.post_karma} | #{current_user.comment_karma}"
                     %b.caret
                   %ul.dropdown-menu
                     %li
                       = link_to 'Logout', destroy_user_session_path, method: 'delete'
                     %li
                       = link_to 'Edit Profile', edit_user_registration_path
-                    %li.divider
-                    %li
-                      %a{:href => "#"} Karma
               - else
                 %li{class: active_class('devise/sessions', 'new')}
                   = link_to 'Login', new_user_session_path
