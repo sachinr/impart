@@ -7,7 +7,7 @@ describe Comment do
       comment1.ups = 10; comment1.downs = 1
       comment2 = Comment.new
       comment2.ups = 100; comment2.downs = 10
-      (comment1.score < comment2.score).should be_true
+      (comment1.rank < comment2.rank).should be_true
     end
 
     it 'values down votes' do
@@ -15,7 +15,7 @@ describe Comment do
       comment1.ups = 100; comment1.downs = 20
       comment2 = Comment.new
       comment2.ups = 100; comment2.downs = 10
-      (comment1.score < comment2.score).should be_true
+      (comment1.rank < comment2.rank).should be_true
     end
 
     it 'should be the same as reddit' do
@@ -27,7 +27,7 @@ describe Comment do
       comment2.ups = 3485; comment2.downs = 1161
 
       Comment.stub(:all).and_return([comment1, comment2, comment3])
-      Comment.sort_by_score.should == [comment1, comment3, comment2]
+      Comment.sort_by_rank.should == [comment1, comment3, comment2]
     end
 
   end

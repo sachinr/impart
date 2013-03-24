@@ -2,7 +2,7 @@
   %td.vote_count
     = render 'post_upvote', post: post
   %td
-    %h3
+    %h4
       = link_to post.title, post.url, target: '_blank'
       %span.url= "(#{url_host(post.url)})"
     %span.age= "#{time_ago_in_words(post.created_at)} by #{post.user_name}, "

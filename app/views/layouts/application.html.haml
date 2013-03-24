@@ -20,7 +20,7 @@
           .nav-collapse.collapse.navbar-responsive-collapse
             %ul.nav
               %li{class: active_class('posts', 'index')}
-                = link_to 'Top', root_url
+                = link_to 'Hot', root_url
               %li{class: active_class('posts', 'latest')}
                 = link_to 'Latest', latest_posts_url
               - if admin_user?

@@ -1,0 +1,9 @@
+- upvoted = comment.comment_votes.present? && comment.comment_votes.first.value == 1
+- downvoted = comment.comment_votes.present? && comment.comment_votes.first.value == -1
+
+%a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, |
+                  'data-direction' => 'up', class: upvoted ? 'voted' : '' }
+  %i.icon-arrow-up
+%a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, |
+                  'data-direction' => 'down', class: downvoted ? 'voted' : '' }
+  %i.icon-arrow-down

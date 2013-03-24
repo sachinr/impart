@@ -19,8 +19,20 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.all_with_user_votes(user)
+    posts = Post.joins("LEFT OUTER JOIN post_votes
+               ON post_votes.post_id = posts.id
+               AND post_votes.user_id = #{user.id}").all
+
+    sort_collection_by_rank(posts)
+  end
+
   def self.sort_by_rank
-    all.sort { |a, b| b.rank <=> a.rank }
+    sort_collection_by_rank(all)
+  end
+
+  def self.sort_collection_by_rank(collection)
+    collection.sort { |a, b| b.rank <=> a.rank }
   end
 
   def upvote(user)

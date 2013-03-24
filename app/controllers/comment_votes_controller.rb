@@ -5,7 +5,8 @@ class CommentVotesController < ApplicationController
   def create
     comment = Comment.find(params[:comment_id])
     if comment.vote(params[:direction], current_user)
-      render :json => comment
+      render text: render_to_string(partial: 'comments/comment',
+                                    locals: { comment: comment })
     else
       render :json => {}, :status => 422
     end

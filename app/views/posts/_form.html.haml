@@ -1,12 +1,14 @@
 = form_for @post, :html => { :class => 'form-horizontal' } do |f|
   .control-group
-    = f.label :title, :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_field'
-  .control-group
     = f.label :url, :class => 'control-label'
     .controls
       = f.url_field :url, :class => 'text_field', value: 'http://'
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field input-xxlarge'
+      %span.help-inline
+        = link_to 'Suggest title from URL', '#', class: 'js-content-fetcher', data: { url: content_fetcher_index_path }
   .control-group
     = f.label :description, :class => 'control-label'
     .controls.wmd-panel

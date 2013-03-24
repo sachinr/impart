@@ -9,6 +9,8 @@ Votes::Application.routes.draw do
     resources :comment_votes, only: [:create, :destroy]
   end
 
+  resources :content_fetcher, only: [:index]
+
   namespace :admin do
     resources :users
   end

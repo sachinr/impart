@@ -12,6 +12,7 @@ gem 'bluecloth'
 gem 'pg'
 gem 'coffee-rails', '~> 3.2.1'
 gem "pagedown-rails", "~> 1.1.1"
+gem 'nokogiri'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

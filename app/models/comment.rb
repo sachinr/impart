@@ -18,20 +18,36 @@ class Comment < ActiveRecord::Base
     end
   end
 
-  def self.sort_by_score
-    all.sort { |a, b| b.score <=> a.score }
+  def self.all_with_user_votes(user)
+    comments = Comment.joins("LEFT OUTER JOIN comment_votes
+               ON comment_votes.comment_id = comments.id
+               AND comment_votes.user_id = #{user.id}").all
+
+    sort_collection_by_rank(comments)
+  end
+
+  def self.sort_by_rank
+    sort_collection_by_rank(all)
+  end
+
+  def self.sort_collection_by_rank(collection)
+    collection.sort { |a, b| b.rank <=> a.rank }
   end
 
   def deleted?
     deleted
   end
 
-  def delete!
-    self.deleted = true
-    self.save!
+  def remove_comment_from_thread
+    if comments.empty?
+      self.delete
+    else
+      self.deleted = true
+      self.save!
+    end
   end
 
-  def score
+  def rank
     confidence(ups, downs)
   end
 
@@ -42,17 +58,6 @@ class Comment < ActiveRecord::Base
     phat = 1.0 * ups/n
     return (phat+z*z/(2*n)-z*Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
   end
-
-  #def confidence(ups, downs)
-
-    #n = ups + downs
-    #return 0 if n == 0
-
-    #z = 1.0
-    #phat = 1.0 * ups/n
-
-    #Math.sqrt(phat+z*z/(2*n)-z*((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
-  #end
 
   def comment_count
     total = comments.count

@@ -38,7 +38,7 @@ $ ->
     direction = element.data('direction')
     commentId = element.data('comment-id')
 
-    $.post "/comments/#{commentId}/comment_votes", {direction: direction}, ->
-      console.log 'Success'
+    $.post "/comments/#{commentId}/comment_votes", {direction: direction}, (data) ->
+      element.parents('ul:first').replaceWith(data)
     .fail (xhr) ->
       console.log $.parseJSON(xhr.responseText).errors

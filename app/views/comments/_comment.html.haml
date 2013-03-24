@@ -2,10 +2,7 @@
   %li.comment-displayed
     .comment-content
       .comment-actions
-        %a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, 'data-direction' => 'up'}
-          %i.icon-arrow-up
-        %a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, 'data-direction' => 'down'}
-          %i.icon-arrow-down
+        = render 'comments/comment_actions', comment: comment
       .user-avatar
       .comment-main
         %b= comment.user_name
