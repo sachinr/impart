@@ -61,7 +61,7 @@
               %li
                 %form.navbar-form
                   =link_to 'New Post', new_post_path, class: "btn btn-primary"
-    .container
+    .container-fluid.application
       - flash.each do |name, msg|
         %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
           %a.close{"data-dismiss" => "alert"}
