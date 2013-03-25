@@ -49,12 +49,17 @@ class Post < ActiveRecord::Base
 
   def self.with_user_votes(user)
     if user
-      joins("LEFT OUTER JOIN post_votes
+      joins("LEFT JOIN post_votes
              ON post_votes.post_id = posts.id
-             AND post_votes.user_id = #{user.id}")
+             AND post_votes.user_id = #{user.id}").
+      select('posts.*, post_votes.user_id AS user_post_vote')
     else
       self
     end
+  end
+
+  def self.find_with_user_vote(id, user)
+    with_user_votes(user).where('posts.id = ?', id).first
   end
 
   def self.sort_by_rank

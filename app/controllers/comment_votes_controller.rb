@@ -6,7 +6,8 @@ class CommentVotesController < ApplicationController
     comment = Comment.find(params[:comment_id])
     if comment.vote(params[:direction], current_user)
       render text: render_to_string(partial: 'comments/comment',
-                                    locals: { comment: comment })
+                                    locals: { comment: comment,
+                                              user: current_user})
     else
       render :json => {}, :status => 422
     end

@@ -111,4 +111,18 @@ class Comment < ActiveRecord::Base
   def can_be_edited_by(editor)
     editor && (editor == user || editor.admin?)
   end
+
+  def voted_by?(user, value)
+    return false unless user
+    comment_votes.where('comment_votes.user_id = ? AND value = ?',
+                        user.id, value).all.present?
+  end
+
+  def upvoted_by?(user)
+    voted_by?(user, 1)
+  end
+
+  def downvoted_by?(user)
+    voted_by?(user, -1)
+  end
 end

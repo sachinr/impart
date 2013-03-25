@@ -1,4 +1,4 @@
-- upvote_class = current_user && post.post_votes.present? ? 'voted' : ''
+- upvote_class = current_user && post.user_post_vote ? 'voted' : ''
 %span.post_votes.pull-left
   %span.upvote_count
     = post.votes

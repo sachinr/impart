@@ -28,8 +28,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_with_user_vote(params[:id], current_user)
     @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id)
     @comments = @post.comments.sort_by_rank
+    @user = current_user
   end
 end

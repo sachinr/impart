@@ -5,8 +5,14 @@
     %h4
       = link_to post.title, post.url, target: '_blank'
       %span.url= "(#{url_host(post.url)})"
-    %span.age= "#{time_ago_in_words(post.created_at)} by #{post.user_name}, "
-    = link_to pluralize(post.comment_count, 'comment'), post_path(post)
+    %span.post-info-link
+      %a{href: '#'}
+        %i.icon-plus
+    %span.post-info-link
+      %a{href: post_path(post)}
+        %i.icon-comment
+          = post.comment_count
+    %span.age= "#{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
 
   %td
     - if post.can_be_edited_by(current_user)

@@ -1,5 +1,5 @@
-- upvoted = comment.comment_votes.present? && comment.comment_votes.first.value == 1
-- downvoted = comment.comment_votes.present? && comment.comment_votes.first.value == -1
+- upvoted = comment.upvoted_by?(current_user)
+- downvoted = comment.downvoted_by?(current_user)
 
 %a.js-comment-vote.comment_vote{href: '#','data-comment-id' => comment.id, |
                   'data-direction' => 'up', class: upvoted ? 'voted' : '' }
