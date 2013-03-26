@@ -1,6 +1,8 @@
 require 'open-uri'
 
 class ContentFetcher
+  attr_reader :document
+
   def initialize(url)
     @document = Nokogiri::HTML(open url)
   end

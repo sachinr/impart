@@ -2,18 +2,21 @@
   .control-group
     = f.label :url, :class => 'control-label'
     .controls
-      = f.url_field :url, :class => 'text_field', value: 'http://'
+      = f.url_field :url, :class => 'text_field input-xxlarge', value: @post.url || 'http://'
+
   .control-group
     = f.label :title, :class => 'control-label'
     .controls
       = f.text_field :title, :class => 'text_field input-xxlarge'
       %span.help-inline
         = link_to 'Suggest title from URL', '#', class: 'js-content-fetcher', data: { url: content_fetcher_index_path }
+
   .control-group
     = f.label :description, :class => 'control-label'
     .controls.wmd-panel
       #wmd-button-bar
         = f.text_area :description, :class => 'text_area wmd-input'
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'

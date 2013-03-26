@@ -1,0 +1,4 @@
+- if post.description.present?
+  .row-fluid
+    .well.well-small.table-bordered.description
+      %p= BlueCloth.new(post.description).to_html.html_safe

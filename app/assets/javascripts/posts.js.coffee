@@ -29,3 +29,19 @@ $ ->
         $(e.target).button('reset')
         $('#post_title').val(data['title'])
       )
+
+  $(document).on 'click', '.js-fetch-description', (e) ->
+    e.preventDefault()
+    if $(e.target).hasClass('open')
+      $(e.target).toggleClass('open')
+      $(e.target).parents('tr').find('.index-post-description').html('')
+    else
+      url = $(e.target).data('url')
+      $.ajax(
+        type: 'GET',
+        url: url,
+        ).done((data) ->
+          $(e.target).toggleClass('open')
+          $(e.target).parents('tr').find('.index-post-description').html(data)
+        )
+

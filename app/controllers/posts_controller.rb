@@ -33,4 +33,10 @@ class PostsController < ApplicationController
     @comments = @post.comments.sort_by_rank
     @user = current_user
   end
+
+  def description
+    @post = Post.find_with_user_vote(params[:id], current_user)
+    render text: render_to_string(partial: 'posts/description',
+                                  locals: {post: @post})
+  end
 end
