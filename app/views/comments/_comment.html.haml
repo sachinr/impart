@@ -14,4 +14,4 @@
         - if current_user
           =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
 
-    = render 'comments/listing', comments: comment.comments.sort { |a, b| b.score <=> a.score }
+    = render 'comments/listing', comments: Comment.sort_collection_by_rank(comment.comments)
