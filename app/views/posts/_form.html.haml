@@ -13,9 +13,8 @@
 
   .control-group
     = f.label :description, :class => 'control-label'
-    .controls.wmd-panel
-      #wmd-button-bar
-        = f.text_area :description, :class => 'text_area wmd-input'
+    .controls
+      = f.text_area :description, :class => 'text_area redactor', id: 'redactor_content'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

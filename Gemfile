@@ -8,11 +8,13 @@ gem 'inherited_resources'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'devise'
-gem 'bluecloth'
 gem 'pg'
 gem 'coffee-rails', '~> 3.2.1'
-gem "pagedown-rails", "~> 1.1.1"
 gem 'nokogiri'
+gem 'redactor-rails'
+gem "carrierwave"
+gem "mini_magick"
+gem "fog", "~> 1.3.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

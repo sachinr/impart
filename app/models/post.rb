@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :description, :url, :user_id
 
   validates :title, presence: true
-  validates :url,   presence: true
 
   after_create :initial_post_vote
 
