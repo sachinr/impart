@@ -1,28 +1,25 @@
 .post-information
-  .row
-    .span11
-      = render 'post_upvote', post: @post
+  .span12
+    = render 'post_upvote', post: @post
 
-      %span.pull-left.post-content
-        %h4
-          = link_to @post.title, @post.url, target: '_blank'
-          %span.url= "(#{url_host(@post.url)})"
+    %span.pull-left.post-content
+      %h4
+        = render 'title', post: @post
 
-        = render 'description', post: @post
+      = render 'description', post: @post
 
-        %span.age= "Posted #{time_ago_in_words(@post.created_at)} by #{@post.user_name}"
-        - if @post.can_be_edited_by(current_user)
-          %span.actions= " | #{ link_to 'edit', edit_post_path(@post) } | #{ link_to 'delete', post_path(@post), method: :delete, confirm: 'Are you sure?' }".html_safe
+      %span.age= "Posted #{time_ago_in_words(@post.created_at)} by #{@post.user_name}"
+      - if @post.can_be_edited_by(current_user)
+        %span.actions= " | #{ link_to 'edit', edit_post_path(@post) } | #{ link_to 'delete', post_path(@post), method: :delete, confirm: 'Are you sure?' }".html_safe
 
-%hr
+.span12
+  %h5.comment-heading
+    ="Showing #{pluralize(@post.comment_count, 'comment')}"
 
-%h5
-  ="Showing #{pluralize(@post.comment_count, 'comment')}"
+  .row-fluid
+    .span5
+      .post-comment-form
+        =render 'comments/form', comment: @comment
 
-.row-fluid
-  .span5
-    .post-comment-form
-      =render 'comments/form', comment: @comment
-
-.comment-listing
-  =render 'comments/listing', comments: @comments
+  .comment-listing
+    =render 'comments/listing', comments: @comments

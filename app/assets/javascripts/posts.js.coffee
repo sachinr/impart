@@ -12,10 +12,11 @@ $ ->
         window.location.pathname = '/users/sign_in/'
       console.log $.parseJSON(xhr.responseText).errors
 
-  if $(".wmd-panel").length > 0
-    converter = Markdown.getSanitizingConverter()
-    editor = new Markdown.Editor(converter)
-    editor.run()
+  $(document).on 'focusout', '#post_url', (e) ->
+    if $(e.target).val() == ''
+      $('.js-content-fetcher').addClass('hidden')
+    else
+      $('.js-content-fetcher').removeClass('hidden')
 
   $(document).on 'click', '.js-content-fetcher', (e) ->
     e.preventDefault()

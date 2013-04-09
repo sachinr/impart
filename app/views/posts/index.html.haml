@@ -1,7 +1,5 @@
 - if @posts.count > 0
-  %h4= @title
-
-  %table.table.table-striped
+  %table.table
     %tbody
       - @posts.each do |post|
         = render 'post', post: post

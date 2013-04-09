@@ -32,6 +32,7 @@ class PostsController < ApplicationController
     @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id)
     @comments = @post.comments.sort_by_rank
     @user = current_user
+    render :show, layout: 'post'
   end
 
   def description

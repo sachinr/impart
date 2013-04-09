@@ -7,8 +7,10 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :description, :url, :user_id
 
   validates :title, presence: true
+  validate :valid_url
 
   after_create :initial_post_vote
+  #before_validation :check_http_on_url
 
   def user_name
     if user
@@ -107,4 +109,19 @@ class Post < ActiveRecord::Base
   def item_hour_age
     (Time.now - created_at) / 60 / 60
   end
+
+  def check_http_on_url
+    if url.present?
+      self.url = "http://#{url}" unless url.match(/https?:\/\/.*$/i)
+    end
+
+    true
+  end
+
+  def valid_url
+    return true if (url.blank? || url =~ URI::regexp)
+    errors.add(:url, 'not a valid url')
+    false
+  end
+
 end

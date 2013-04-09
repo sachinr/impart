@@ -8,25 +8,11 @@
   %body
     .container-fluid
       .row-fluid
-        .span3.application-side
-          .cover-img{style:"background-image:url('#{asset_path 'campus.jpg'}')"}
-          .cover-body
-            .cover-body-inner
-              %h1.cover-title Not the average actuary
-              %p.cover-description Opinion pieces, book reviews and though provoking snippets
-        .span9.application
+        .span2.application-side
+        .span10.application-large
           .navbar
             .navbar-simple
               .container
-                / .btn-navbar is used as the toggle for collapsed navbar content
-                -#%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-                  -#%span.icon-bar
-                  -#%span.icon-bar
-                  -#%span.icon-bar
-                / Be sure to leave the brand out there if you want it shown
-                -#%a.brand{href: root_url}
-                  -#%i.icon-asterisk
-                / Everything you want hidden at 940px or less, place within here
                 .navigation
                   %ul.nav
                     %li{class: active_class('posts', 'index')}

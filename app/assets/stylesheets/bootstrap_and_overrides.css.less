@@ -31,8 +31,17 @@
 // @linkColor: #ff0000;
 
 .navbar{
-  width: 90%;
   margin: 0 auto 20px;
+}
+
+.navbar-simple{
+  border-bottom: 1px solid #e1e1e8
+}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  border-bottom: 2px solid #e1e1e8;
+  background-color: inherit !important;
+  box-shadow: none !important;
 }
 
 .navbar-form{
@@ -40,6 +49,87 @@
 }
 
 .application{
-  padding-right: 8%;
-  padding-left: 8%;
+  margin-left: 25% !important;
+}
+
+.application-large{
+  margin-left: 15% !important;
+}
+
+.application-side{
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  max-width: 500px;
+}
+
+.cover-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+  -moz-box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+  box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+}
+
+.cover-body {
+  color: '#fff';
+  position: absolute;
+  bottom: 0;
+  padding: 50px 10% 10%;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.cover-body::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: repeat-x;
+  background-image: -webkit-linear-gradient(bottom,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+  background-image: -moz-linear-gradient(bottom,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+  background-image: -ms-linear-gradient(bottom,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+  background-image: -o-linear-gradient(bottom,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to top,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);
+}
+
+.cover-body .cover-body-inner {
+  position: relative;
+  z-index: 100;
+}
+
+.cover-title {
+  font-size: 32px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.cover .cover-title, .cover .cover-description {
+  border: 0;
+  outline: 0;
+}
+
+.cover-description {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 14px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }

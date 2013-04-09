@@ -1,20 +1,22 @@
 = form_for @post, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
+  = f.error_notification
+
+  = f.control_group :url do |f|
     = f.label :url, :class => 'control-label'
     .controls
-      = f.url_field :url, :class => 'text_field input-xxlarge', value: @post.url || 'http://'
+      = f.text_field :url, :class => 'text_field input-xxlarge', value: @post.url, placeholder: 'http://www.example.com'
+      = f.error_messages('Optional')
 
-  .control-group
+  = f.control_group :title do |f|
     = f.label :title, :class => 'control-label'
     .controls
       = f.text_field :title, :class => 'text_field input-xxlarge'
-      %span.help-inline
-        = link_to 'Suggest title from URL', '#', class: 'js-content-fetcher', data: { url: content_fetcher_index_path }
+      = f.error_messages(link_to 'Suggest title from URL', '#', class: 'js-content-fetcher hidden', data: { url: content_fetcher_index_path })
 
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_area :description, :class => 'text_area redactor', id: 'redactor_content'
+      = f.text_area :description, :class => 'text_area redactor', id: 'redactor_content', rows: 30
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

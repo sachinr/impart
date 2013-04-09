@@ -3,8 +3,8 @@
     = render 'post_upvote', post: post
   %td
     %h4
-      = link_to post.title, post.url, target: '_blank'
-      %span.url= "(#{url_host(post.url)})"
+      = render 'title', post: post
+
       - if post.can_be_edited_by(current_user)
         %span.actions.pull-right
           %a{href: edit_post_path(post)}
@@ -12,14 +12,16 @@
           %a{href: post_path(post), 'data-confirm' => "Are you sure?", 'data-method' => "delete", 'rel' => "nofollow"}
             %i.icon-trash
     %span.post-info-link
-      - if post.description.present?
+      - if post.description.present? && strip_tags(post.description).present?
         %a{href: '#', class: 'js-fetch-description'}
           %i.icon-plus{'data-url' => description_post_path(post)}
+            read more
 
     %span.post-info-link
       %a{href: post_path(post)}
         %i.icon-comment
           = post.comment_count
+          comments
 
     %span.age= "#{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
     .index-post-description

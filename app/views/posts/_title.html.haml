@@ -1,0 +1,5 @@
+- if post.url.present?
+  = link_to post.title, post.url, target: '_blank', class: 'post-title'
+  %span.url= "(#{url_host(post.url)})"
+- else
+  = link_to post.title, post_path(post), class: 'post-title'

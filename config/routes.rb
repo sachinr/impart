@@ -20,6 +20,8 @@ Votes::Application.routes.draw do
     resources :users
   end
 
+  resources :inbound_emails
+
   match 'latest' => 'posts#latest', as: 'latest_posts'
   match 'top/:period' => 'posts#top', as: 'top_posts'
   root :to => "posts#index"

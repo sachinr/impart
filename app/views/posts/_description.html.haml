@@ -1,4 +1,4 @@
-- if post.description.present?
+- if post.description.present? && strip_tags(post.description).present?
   .row-fluid
     .well.well-small.table-bordered.description
       %p= post.description.html_safe
