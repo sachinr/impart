@@ -16,6 +16,9 @@
               %p.cover-description Opinion pieces, book reviews and though provoking snippets
         .application
           = render 'layouts/navigation'
+          .jumbotron.hidden-desktop
+            %h1.hero-title Not the average actuary
+            %p.hero-description Opinion pieces, book reviews and though provoking snippets
           - flash.each do |name, msg|
             %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
               %a.close{"data-dismiss" => "alert"}
