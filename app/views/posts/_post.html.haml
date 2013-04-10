@@ -13,7 +13,7 @@
             %i.icon-trash
     %span.post-info-link
       - if post.description.present? && strip_tags(post.description).present?
-        %a{href: '#', class: 'js-fetch-description'}
+        %a{href: '#', class: 'js-fetch-description visible-desktop'}
           %i.icon-plus{'data-url' => description_post_path(post)}
             read more
 

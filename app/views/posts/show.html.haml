@@ -1,18 +1,17 @@
 .post-information
-  .span12
-    = render 'post_upvote', post: @post
+  = render 'post_upvote', post: @post
 
-    %span.pull-left.post-content
-      %h4
-        = render 'title', post: @post
+  %span.pull-left.post-content
+    %h4
+      = render 'title', post: @post
 
-      = render 'description', post: @post
+    = render 'description', post: @post
 
-      %span.age= "Posted #{time_ago_in_words(@post.created_at)} by #{@post.user_name}"
-      - if @post.can_be_edited_by(current_user)
-        %span.actions= " | #{ link_to 'edit', edit_post_path(@post) } | #{ link_to 'delete', post_path(@post), method: :delete, confirm: 'Are you sure?' }".html_safe
+    %span.age= "Posted #{time_ago_in_words(@post.created_at)} by #{@post.user_name}"
+    - if @post.can_be_edited_by(current_user)
+      %span.actions= " | #{ link_to 'edit', edit_post_path(@post) } | #{ link_to 'delete', post_path(@post), method: :delete, confirm: 'Are you sure?' }".html_safe
 
-.span12
+.post-comments
   %h5.comment-heading
     ="Showing #{pluralize(@post.comment_count, 'comment')}"
 

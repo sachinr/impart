@@ -1,0 +1,30 @@
+/* Large desktop */
+@media (min-width: 1200px)
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px)
+  .application, .application-large
+    margin-left: 0px
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px)
+  .application, .application-large
+    margin-left: 0px
+
+/* Landscape phones and down */
+@media (max-width: 480px)
+  .application, .application-large
+    margin-left: 0px
+
+  table
+    .actions
+      display: none
+  span.age
+    margin-left: 0
+    display: block
+
+  td.vote_count
+    width: auto
+
+  .upvote_count
+    display: none
