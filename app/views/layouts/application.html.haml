@@ -1,27 +1,13 @@
-!!!
-%html
-  %head
-    %title Votes
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-  %body
-    .container-fluid
-      .row-fluid
-        .span3.application-side.visible-desktop
-          .cover-img{style:"background-image:url('#{asset_path 'campus.jpg'}')"}
-          .cover-body
-            .cover-body-inner
-              %h1.cover-title Not the average actuary
-              %p.cover-description Opinion pieces, book reviews and though provoking snippets
-        .application
-          = render 'layouts/navigation'
-          .jumbotron.hidden-desktop
-            %h1.hero-title Not the average actuary
-            %p.hero-description Opinion pieces, book reviews and though provoking snippets
-          - flash.each do |name, msg|
-            %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-              %a.close{"data-dismiss" => "alert"}
-                %i.icon-remove-sign
-              = content_tag :div, msg, :id => "flash_#{name}"
-          = yield
+= render 'layouts/base'
+.container-fluid
+  .row-fluid
+    .span2.visible-desktop
+      = yield :sidebar
+    .span10.application.application-large
+      = render 'layouts/navigation'
+      - flash.each do |name, msg|
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          %a.close{"data-dismiss" => "alert"}
+            %i.icon-remove-sign
+          = content_tag :div, msg, :id => "flash_#{name}"
+      = yield

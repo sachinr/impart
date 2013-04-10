@@ -5,18 +5,19 @@ class PostsController < ApplicationController
   def index
     @title = 'Hot Posts'
     @posts = Post.all_with_user_votes(current_user)
+    render 'index', layout: 'landing'
   end
 
   def latest
     @title = 'Latest Posts'
     @posts = Post.latest_with_user_votes(current_user)
-    render 'index'
+    render 'index', layout: 'landing'
   end
 
   def top
     @title = 'Top Posts'
     @posts = Post.top_with_user_votes(current_user, params[:period])
-    render 'index'
+    render 'index', layout: 'landing'
   end
 
   def create
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
     @comment = Comment.new(commentable_type: 'Post', commentable_id: @post.id)
     @comments = @post.comments.sort_by_rank
     @user = current_user
-    render :show, layout: 'post'
+    render :show
   end
 
   def description

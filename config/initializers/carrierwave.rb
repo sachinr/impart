@@ -1,8 +1,8 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',
-    :aws_access_key_id      => 'AKIAILAELSVCLYGCTQYA',
-    :aws_secret_access_key  => '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'
+    :aws_access_key_id      => ENV['SACHIN_AMAZON_KEY'],
+    :aws_secret_access_key  => ENV['SACHIN_AMAZON_SECRET']
   }
   config.fog_directory  = 'impart-assets'
   config.fog_public     = true
