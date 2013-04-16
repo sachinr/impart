@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410224757) do
+ActiveRecord::Schema.define(:version => 20130416212541) do
 
   create_table "comment_votes", :force => true do |t|
     t.integer  "comment_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130410224757) do
     t.integer  "user_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.string   "message_id"
   end
 
   create_table "redactor_assets", :force => true do |t|

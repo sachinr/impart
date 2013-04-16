@@ -8,9 +8,23 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validate :valid_url
+  validates :message_id, uniqueness: true
 
   after_create :initial_post_vote
-  #before_validation :check_http_on_url
+
+  def self.create_from_postmark(mitt)
+    author = User.find_by_email(mitt.from)
+    if author
+      post = author.posts.new(title: mitt.subject)
+      coder = HTMLEntities.new
+      post.description = Sanitize.clean(coder.decode(mitt.html_body),
+                                        Sanitize::Config::RELAXED)
+      #post.photo = mitt.attachments.first.read
+      post.message_id = mitt.message_id
+      post.save
+      post
+    end
+  end
 
   def user_name
     if user

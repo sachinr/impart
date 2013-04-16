@@ -1,7 +1,7 @@
 = content_for :sidebar do
   .post-author-card
     %a.post-author-image
-      = image_tag(@post.user.avatar.url)
+      = image_tag(@post.user.avatar.url) if @post.user.avatar.url
     %h4
       %strong= @post.user.username
     %p= @post.user.bio

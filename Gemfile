@@ -15,6 +15,9 @@ gem 'redactor-rails'
 gem "carrierwave"
 gem "mini_magick"
 gem "fog", "~> 1.3.1"
+gem "postmark-mitt", "~> 0.0.11"
+gem "htmlentities", "~> 4.3.1"
+gem "sanitize", "~> 2.0.3"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

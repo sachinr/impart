@@ -4,7 +4,8 @@ class InboundEmailsController < ApplicationController
   end
 
   def create
-    File.open('incoming_email.txt', 'w') { |file| file.write(params['mandrill_events']) }
+    mitt = Postmark::Mitt.new(request.body.read)
+    Post.create_from_postmark(mitt)
     render nothing: true
   end
 end
