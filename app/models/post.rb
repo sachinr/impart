@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validate :valid_url
-  validates :message_id, uniqueness: true
+  validates :message_id, uniqueness: true, allow_blank: true
 
   after_create :initial_post_vote
 
