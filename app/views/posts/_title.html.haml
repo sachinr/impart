@@ -1,5 +1,8 @@
 - if post.url.present?
-  = link_to post.title, post.url, target: '_blank', class: 'post-title'
+  %a.post-title{href: post.url, target: '_blank'}
+    %i.icon-share
+    =post.title
   %span.url= "(#{url_host(post.url)})"
 - else
-  = link_to post.title, post_path(post), class: 'post-title'
+  %a.post-title{href: post_path(post)}
+    = post.title

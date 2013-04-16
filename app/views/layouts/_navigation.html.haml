@@ -47,7 +47,7 @@
             - else
               %li{class: active_class('devise/sessions', 'new')}
                 = link_to 'Login', new_user_session_path
-              %li{class: active_class('devise/registrations', 'new')}
+              %li.hidden-phone{class: active_class('devise/registrations', 'new')}
                 = link_to 'Create account', new_user_registration_path
             %li
               %form.navbar-form
