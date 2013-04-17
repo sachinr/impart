@@ -10,7 +10,7 @@ module ControlGroupHelper
       @form.object.respond_to?(:errors) && @form.object.errors[@attribute].any?
     end
 
-    def error_messages(default_help)
+    def error_messages(default_help = nil)
       if has_errors?
         @template.content_tag :span,
           @form.object.errors[@attribute].to_sentence,

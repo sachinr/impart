@@ -7,10 +7,13 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :description, :url, :user_id
 
   validates :title, presence: true
-  validate :valid_url
   validates :message_id, uniqueness: true, allow_blank: true
+  validate :valid_url
+  validate :user_must_be_confirmed
 
   after_create :initial_post_vote
+
+  self.per_page = 15
 
   def self.create_from_postmark(mitt)
     author = User.find_by_email(mitt.from)
@@ -135,6 +138,12 @@ class Post < ActiveRecord::Base
   def valid_url
     return true if (url.blank? || url =~ URI::regexp)
     errors.add(:url, 'not a valid url')
+    false
+  end
+
+  def user_must_be_confirmed
+    return true if user.confirmed
+    errors.add(:base, 'user has not been confirmed')
     false
   end
 

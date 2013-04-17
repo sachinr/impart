@@ -35,7 +35,8 @@
             - if current_user
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = current_user.username
+                  %span.username.hidden-phone
+                    = current_user.username
                   %span.badge{'data-toggle' => 'tooltip', title: "Karma (post | comment)"}
                     = "#{current_user.post_karma} | #{current_user.comment_karma}"
                   %b.caret

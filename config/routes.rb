@@ -17,7 +17,12 @@ Votes::Application.routes.draw do
   resources :content_fetcher, only: [:index]
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        post :confirm
+      end
+    end
+
   end
 
   resources :inbound_emails

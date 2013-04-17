@@ -3,6 +3,8 @@
     %tbody
       - @posts.each do |post|
         = render 'post', post: post
+
+  = will_paginate @posts, :renderer => BootstrapPagination::Rails
 - else
   %h4 There aren't any posts yet :(
   %p Be a nice guy and get us started

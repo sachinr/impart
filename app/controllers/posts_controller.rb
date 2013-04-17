@@ -4,27 +4,29 @@ class PostsController < ApplicationController
 
   def index
     @title = 'Hot Posts'
-    @posts = Post.all_with_user_votes(current_user)
+    @posts = paginate(Post.all_with_user_votes(current_user))
     render 'index', layout: 'landing'
   end
 
   def latest
     @title = 'Latest Posts'
-    @posts = Post.latest_with_user_votes(current_user)
+    @posts = paginate(Post.latest_with_user_votes(current_user))
     render 'index', layout: 'landing'
   end
 
   def top
     @title = 'Top Posts'
-    @posts = Post.top_with_user_votes(current_user, params[:period])
+    @posts = paginate(Post.top_with_user_votes(current_user, params[:period]))
     render 'index', layout: 'landing'
   end
 
   def create
     @post = current_user.posts.new(params[:post])
-    if @post.save!
+    if @post.save
       flash[:notice] = 'Successfully created post'
       redirect_to post_path(@post)
+    else
+      render :new
     end
   end
 
@@ -40,5 +42,10 @@ class PostsController < ApplicationController
     @post = Post.find_with_user_vote(params[:id], current_user)
     render text: render_to_string(partial: 'posts/description',
                                   locals: {post: @post})
+  end
+
+  private
+  def paginate(posts)
+    posts.paginate(page: params[:page], per_page: Post.per_page)
   end
 end
