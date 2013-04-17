@@ -5,7 +5,9 @@
     %h4
       %strong= @post.user.username
     %p= @post.user.bio
-    %a= @post.user.url
+    - if @post.user.url
+      %a{href: @post.user.url}
+        =url_host(@post.user.url)
 
 .post-information
   = render 'post_upvote', post: @post

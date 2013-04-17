@@ -1,5 +1,6 @@
 @import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap/responsive";
+@import url('http://fonts.googleapis.com/css?family=Noticia+Text');
 
 // Set the correct sprite paths
 @iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
@@ -30,12 +31,16 @@
 // Example:
 // @linkColor: #ff0000;
 
+@serifFontFamily: 'Noticia Text';
+@sansFontFamily: 'Noticia Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 a:hover{
   text-decoration: none;
 }
 
 .navbar{
-  margin: 0 auto 20px;
+  margin: 0 auto 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .navbar-simple{
