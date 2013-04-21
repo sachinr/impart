@@ -21,6 +21,7 @@ Votes::Application.routes.draw do
     resources :users
     resources :user_confirmations, only: [:update]
     resources :user_roles, only: [:update]
+    resources :site_settings, only: [:index, :edit, :update]
   end
 
   resources :inbound_emails

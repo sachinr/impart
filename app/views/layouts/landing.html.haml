@@ -5,8 +5,8 @@
       .cover-img{style:"background-image:url('#{asset_path 'campus.jpg'}')"}
       .cover-body
         .cover-body-inner
-          %h1.cover-title Not the average actuary
-          %p.cover-description Opinion pieces, book reviews and though provoking snippets
+          %h1.cover-title= SiteSetting.site_name
+          %p.cover-description= SiteSetting.site_description
     .application
       = render 'layouts/navigation'
       .jumbotron.hidden-desktop

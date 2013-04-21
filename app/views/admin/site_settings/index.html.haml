@@ -1,0 +1,22 @@
+- content_for :sidebar do
+  =render 'layouts/default_sidebar'
+
+%h4 Site Settings
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Value
+      %th
+
+  %tbody
+    - @site_settings.each do |setting|
+      %tr
+        %td= setting.name.titlecase
+        %td= setting.value
+        %td
+          %a{href: edit_admin_site_setting_path(setting)}
+            %i.icon-pencil
+
+=link_to 'Add setting', new_user_invitation_path

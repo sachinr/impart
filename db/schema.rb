@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420125203) do
+ActiveRecord::Schema.define(:version => 20130421203956) do
 
   create_table "comment_votes", :force => true do |t|
     t.integer  "comment_id"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(:version => 20130420125203) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], :name => "idx_redactor_assetable"
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_redactor_assetable_type"
+
+  create_table "site_settings", :force => true do |t|
+    t.string   "name"
+    t.text     "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                               :null => false

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :posts #do not destroy
   has_many :comments #do not destroy
   has_many :post_votes, dependent: :destroy
+  validate :valid_url
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
@@ -40,5 +41,12 @@ class User < ActiveRecord::Base
     votes = Comment.select('ups, downs').where('user_id = ?', 2)
     votes.inject(0) { |total, comment| total + comment.ups - comment.downs }
   end
+
+  def valid_url
+    return true if (url.blank? || url =~ URI::regexp)
+    errors.add(:url, 'not a valid url')
+    false
+  end
+
 
 end

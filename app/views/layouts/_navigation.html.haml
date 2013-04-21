@@ -24,6 +24,8 @@
             - if admin_user?
               %li{class: active_class('admin/users', 'index')}
                 = link_to 'Users', admin_users_path
+              %li{class: active_class('admin/site_settings', 'index')}
+                = link_to 'Settings', admin_site_settings_path
         .menu.visible-phone
           %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
             %span.icon-bar
@@ -67,3 +69,5 @@
             - if admin_user?
               %li{class: active_class('admin/users', 'index')}
                 = link_to 'Users', admin_users_path
+              %li{class: active_class('admin/site_settings', 'index')}
+                = link_to 'Settings', admin_site_settings_path

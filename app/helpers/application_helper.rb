@@ -1,14 +1,16 @@
 require 'uri'
 module ApplicationHelper
   def url_host(url)
-    uri = URI.parse(url)
-    host = if uri.scheme
-      uri.host
-    else
-      URI.parse("http://#{url}").host
-    end
+    if url.present?
+      uri = URI.parse(url)
+      host = if uri.scheme
+        uri.host
+      else
+        URI.parse("http://#{url}").host
+      end
 
-    host.sub('www.', '')
+      host.sub('www.', '')
+    end
   end
 
   def admin_user?
