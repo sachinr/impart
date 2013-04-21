@@ -8,6 +8,7 @@ gem 'inherited_resources'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'devise'
+gem "devise_invitable", "~> 1.1.7"
 gem 'pg'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'nokogiri'

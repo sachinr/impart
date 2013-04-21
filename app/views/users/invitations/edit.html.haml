@@ -1,0 +1,26 @@
+- content_for :sidebar do
+  =render 'layouts/default_sidebar'
+
+%h2 Accept invitation
+%h5 Please complete the form below to create an account.
+%br
+
+
+= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+  = devise_error_messages!
+  = f.hidden_field :invitation_token
+  .form-horizontal
+    .control-group
+      = f.label :name, class: 'control-label'
+      .controls
+        = f.text_field :username, class: 'input-xxlarge'
+    .control-group
+      = f.label :email, class: 'control-label'
+      .controls
+        %span.uneditable-input= resource.email
+    .control-group
+      = f.label :password, class: 'control-label'
+      .controls
+        = f.password_field :password, class: 'input-xxlarge'
+    .form-actions
+      =f.submit "Create Account", class: 'btn btn-primary'

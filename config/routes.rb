@@ -1,7 +1,8 @@
 Votes::Application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations",
+                                       :invitations => 'users/invitations' }
 
   resources :posts do
     resources :post_votes, only: [:create, :destroy]
@@ -17,12 +18,9 @@ Votes::Application.routes.draw do
   resources :content_fetcher, only: [:index]
 
   namespace :admin do
-    resources :users do
-      member do
-        post :confirm
-      end
-    end
-
+    resources :users
+    resources :user_confirmations, only: [:update]
+    resources :user_roles, only: [:update]
   end
 
   resources :inbound_emails
