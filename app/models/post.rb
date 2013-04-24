@@ -9,7 +9,6 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :message_id, uniqueness: true, allow_blank: true
   validate :valid_url
-  validate :user_must_be_confirmed
 
   after_create :initial_post_vote
 
@@ -92,11 +91,11 @@ class Post < ActiveRecord::Base
     post_vote = PostVote.find_or_initialize_by_post_id_and_user_id(id, user.id)
     if post_vote.new_record?
       self.votes ||= 0
-      self.votes += 1
-      return post_vote.save! && self.save!
+      self.votes += (1 * vote_weight(user))
+      return self.save! && post_vote.save!
     else
-      self.votes -= 1
-      return post_vote.delete && self.save!
+      self.votes -= (1 * vote_weight(user))
+      return self.save! && post_vote.delete
     end
   end
 
@@ -119,8 +118,7 @@ class Post < ActiveRecord::Base
 
   private
   def initial_post_vote
-    post_vote = self.post_votes.new(user_id: user_id)
-    post_vote.save!
+    upvote(user)
   end
 
   def item_hour_age
@@ -141,10 +139,12 @@ class Post < ActiveRecord::Base
     false
   end
 
-  def user_must_be_confirmed
-    return true if user.confirmed
-    errors.add(:base, 'user has not been confirmed')
-    false
+  def vote_weight(user)
+    if user.admin?
+      SiteSetting.admin_vote_multiplier
+    else
+      1
+    end
   end
 
 end

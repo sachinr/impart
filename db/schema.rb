@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(:version => 20130421203956) do
     t.string   "title"
     t.string   "url"
     t.text     "description"
-    t.integer  "votes",       :default => 1
+    t.integer  "votes"
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "message_id"
   end
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130421203956) do
   create_table "site_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"
+    t.string   "value_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

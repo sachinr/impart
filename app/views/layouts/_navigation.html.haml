@@ -4,6 +4,10 @@
       .navigation
         .menu.hidden-phone
           %ul.nav
+            - unless hide_home_icon
+              %li
+                %a{href: root_url}
+                  %i.icon-home
             %li{class: active_class('posts', 'index')}
               = link_to 'Hot', root_url
             %li{class: active_class('posts', 'latest')}

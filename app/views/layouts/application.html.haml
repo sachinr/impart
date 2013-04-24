@@ -4,7 +4,7 @@
     .span2.visible-desktop
       = yield :sidebar
     .span10.application.application-large
-      = render 'layouts/navigation'
+      = render 'layouts/navigation', hide_home_icon: false
       - flash.each do |name, msg|
         %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
           %a.close{"data-dismiss" => "alert"}

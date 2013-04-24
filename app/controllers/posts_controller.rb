@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   inherit_resources
   before_filter :authenticate_user!, :only => ['new', 'create', 'edit', 'update']
+  if SiteSetting.authentication_required_to_view_posts
+    before_filter :authenticate_user!, :only => ['index', 'latest', 'top']
+  end
 
   def index
     @title = 'Hot Posts'

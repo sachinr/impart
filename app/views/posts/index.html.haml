@@ -6,5 +6,5 @@
 
   = will_paginate @posts, :renderer => BootstrapPagination::Rails
 - else
-  %h4 There aren't any posts yet :(
-  %p Be a nice guy and get us started
+  %h4= SiteSetting.no_posts_title
+  %p= SiteSetting.no_posts_description

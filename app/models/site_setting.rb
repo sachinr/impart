@@ -1,6 +1,6 @@
 class SiteSetting < ActiveRecord::Base
 
-  attr_accessible :name, :value
+  attr_accessible :name, :value, :value_type
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -38,7 +38,7 @@ class SiteSetting < ActiveRecord::Base
       if name.end_with?('=')
         find_by_name(stripped_name).update_attribute(:value, args.first)
       else
-        find_cached(name).value
+        get_value(name)
       end
     else
       super
@@ -49,5 +49,19 @@ class SiteSetting < ActiveRecord::Base
 
   def refresh_cache
     SiteSetting.refresh_cache
+  end
+
+  def self.get_value(name)
+    setting = find_cached(name)
+    case setting.value_type
+    when 'boolean'
+      setting.value == 'true'
+    when 'integer'
+      setting.value.to_i
+    when 'float'
+      setting.value.to_f
+    else
+      setting.value
+    end
   end
 end

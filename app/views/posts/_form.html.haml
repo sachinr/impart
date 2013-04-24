@@ -1,7 +1,7 @@
 - content_for :sidebar do
   =render 'layouts/default_sidebar'
 
--unless current_user.confirmed
+-if SiteSetting.user_confirmation_required && !current_user.confirmed
   .alert.alert-error
     Unfortunately you cannot post until your account has been confirmed by an admin
 

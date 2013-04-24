@@ -8,7 +8,7 @@
           %h1.cover-title= SiteSetting.site_name
           %p.cover-description= SiteSetting.site_description
     .application
-      = render 'layouts/navigation'
+      = render 'layouts/navigation', hide_home_icon: true
       .jumbotron.hidden-desktop
         %h1.hero-title Not the average actuary
         %p.hero-description Opinion pieces, book reviews and though provoking snippets

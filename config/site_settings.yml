@@ -1,2 +1,24 @@
-site_name: Impart
-site_description: A social blogging / link sharing site
+site_name:
+  type: string
+  value: Impart
+site_description:
+  type: string
+  value: A social blogging / link sharing site
+no_posts_title:
+  type: string
+  value: There aren't any posts yet :(
+no_posts_description:
+  type: string
+  value: Either change the filter or start posting
+user_confirmation_required:
+  type: boolean
+  value: 'true'
+authentication_required_to_view_posts:
+  type: boolean
+  value: 'false'
+admin_vote_multiplier:
+  type: integer
+  value: 1
+page_title_prefix:
+  type: string
+  value: Impart

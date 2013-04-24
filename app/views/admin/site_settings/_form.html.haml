@@ -9,7 +9,13 @@
   = f.control_group :value do |f|
     = f.label :value, class: 'control-label'
     .controls
-      = f.text_field :value, class: 'input-xxlarge'
+      - if @site_setting.value_type == 'boolean'
+        = f.check_box(:value, {}, "true", "false")
+      - else
+        -if @site_setting.value_type == 'integer'
+          = f.number_field :value, class: 'input-xxlarge'
+        -else
+          = f.text_field :value, class: 'input-xxlarge'
       = f.error_messages
 
     .form-actions
