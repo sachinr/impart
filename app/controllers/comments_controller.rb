@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = current_user.comments.find_by_id(params[:id])
     comment = Comment.find(params[:id]) if comment.nil? && current_user.admin?
-    if comment.remove_from_thread
+    if comment.remove_comment_from_thread
       render(partial: 'deleted_comment', layout: false, locals: {comment: comment})
     end
   end

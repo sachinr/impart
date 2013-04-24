@@ -20,7 +20,7 @@ $ ->
       $.ajax(
         type: 'DELETE'
         url: "/comments/#{commentId}"
-        dataType: 'JSON').done(window.location.reload())
+        dataType: 'json').done(window.location.reload())
 
   $(document).on 'click', '.js_comment_submit_button',  (e) ->
     e.preventDefault()
