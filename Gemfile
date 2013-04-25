@@ -21,6 +21,7 @@ gem "htmlentities", "~> 4.3.1"
 gem "sanitize", "~> 2.0.3"
 gem 'will_paginate', '~> 3.0.0'
 gem "will_paginate-bootstrap", "~> 0.2.2"
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
