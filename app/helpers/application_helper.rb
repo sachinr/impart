@@ -2,14 +2,18 @@ require 'uri'
 module ApplicationHelper
   def url_host(url)
     if url.present?
-      uri = URI.parse(url)
-      host = if uri.scheme
-        uri.host
-      else
-        URI.parse("http://#{url}").host
-      end
+      begin
+        uri = URI.parse(url)
+        host = if uri.scheme
+          uri.host
+        else
+          URI.parse("http://#{url}").host
+        end
 
-      host.sub('www.', '')
+        host.sub('www.', '')
+      rescue URI::InvalidURIError
+        url
+      end
     end
   end
 
