@@ -99,7 +99,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def rank(gravity = 1.8)
+  def rank(gravity = 1.2)
     votes / ((item_hour_age+2) ** gravity)
   end
 
