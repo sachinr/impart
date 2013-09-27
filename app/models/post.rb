@@ -99,8 +99,8 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def rank(gravity = 1.8)
-    votes / ((item_hour_age+2) ** gravity)
+  def rank
+    votes / ((item_hour_age+2) ** SiteSetting.decay_rate)
   end
 
   def comment_count

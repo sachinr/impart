@@ -22,3 +22,6 @@ admin_vote_multiplier:
 page_title_prefix:
   type: string
   value: Impart
+decay_rate:
+  type: float
+  value: 1.8
