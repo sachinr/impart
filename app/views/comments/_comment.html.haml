@@ -5,13 +5,14 @@
         = render 'comments/comment_actions', comment: comment
       .user-avatar
       .comment-main
-        %b= comment.user_name
-        %span= "#{time_ago_in_words(comment.created_at)} ago"
-        %small= "(#{comment.ups}) (#{comment.downs})"
-        %p= comment.content
-        - if comment.can_be_edited_by(current_user)
-          = link_to 'delete', '#', class: 'js-comment-delete-link', 'data-commentable-id' => comment.id
-        - if current_user
-          =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
+        .comment-container
+          %b= comment.user_name
+          %span= "#{time_ago_in_words(comment.created_at)} ago"
+          %small= "(#{comment.ups}) (#{comment.downs})"
+          %p= comment.content
+          - if comment.can_be_edited_by(current_user)
+            = link_to 'delete', '#', class: 'js-comment-delete-link', 'data-commentable-id' => comment.id
+          - if current_user
+            =link_to 'reply', '#', class: 'js-comment-reply-link', 'data-commentable-id' => comment.id
 
     = render 'comments/listing', comments: Comment.sort_collection_by_rank(comment.comments)
