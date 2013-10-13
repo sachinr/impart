@@ -4,12 +4,6 @@
   %h4
     = render 'title', post: post
 
-    - if post.can_be_edited_by(current_user)
-      %span.actions.pull-right
-        %a{href: edit_post_path(post)}
-          %i.icon-pencil
-        %a{href: post_path(post), 'data-confirm' => "Are you sure?", 'data-method' => "delete", 'rel' => "nofollow"}
-          %i.icon-trash
   .index-post-description
     - if post.description.present? && strip_tags(post.description).present?
       = post.description.html_safe
@@ -25,7 +19,13 @@
         %i.icon-comment
           Add comment
 
-  %span.age= "#{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
+    - if post.can_be_edited_by(current_user)
+      %a{href: edit_post_path(post)}
+        %i.icon-pencil
+      %a{href: post_path(post), 'data-confirm' => "Are you sure?", 'data-method' => "delete", 'rel' => "nofollow"}
+        %i.icon-trash
+
+  %span.age= "Submitted #{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
 
 .index-post-comments
   - unless post.comments.empty?

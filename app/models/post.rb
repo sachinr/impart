@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   after_create :initial_post_vote
 
-  self.per_page = 15
+  self.per_page = 10
 
   def self.create_from_postmark(mitt)
     author = User.find_by_email(mitt.from)
