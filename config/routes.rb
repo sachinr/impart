@@ -28,6 +28,7 @@ Votes::Application.routes.draw do
 
   match 'latest' => 'posts#latest', as: 'latest_posts'
   match 'top/:period' => 'posts#top', as: 'top_posts'
+  match 'u/:username' => 'profiles#show', as: 'profile', :constraints => { username: /[\w+\.]+/ }
   root :to => "posts#index"
 
 end

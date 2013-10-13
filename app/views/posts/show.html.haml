@@ -1,15 +1,7 @@
 = content_for :page_title do
   = " - #{@post.title}"
 = content_for :sidebar do
-  .post-author-card
-    %a.post-author-image
-      = image_tag(@post.user.avatar.url)
-    %h4
-      %strong= @post.user.username
-    %p= @post.user.bio
-    - if @post.user.url
-      %a{href: @post.user.url}
-        =url_host(@post.user.url)
+  = render 'profiles/user_sidebar', user: @post.user
 
 %article.article
   = render 'post', post: @post

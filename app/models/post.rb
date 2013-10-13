@@ -64,6 +64,11 @@ class Post < ActiveRecord::Base
     posts.order('posts.votes DESC').all
   end
 
+  def self.latest_from_user(user, author)
+    posts = with_user_votes(user)
+    posts.where('posts.user_id = ?', [author.id]).order('posts.created_at DESC').all
+  end
+
   def self.with_user_votes(user)
     if user
       joins("LEFT JOIN post_votes

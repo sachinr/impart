@@ -1,0 +1,12 @@
+.post-author-card
+  %a.post-author-image
+    = image_tag(user.avatar.url)
+  %h4
+    %strong= user.name
+  %h5
+    %strong
+      =link_to user.username, profile_path(user.username)
+  %p= user.bio
+  - if user.url
+    %a{href: user.url}
+      =url_host(user.url)

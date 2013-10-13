@@ -1,0 +1,15 @@
+= content_for :page_title do
+  = " - #{@user.name}"
+= content_for :sidebar do
+  = render 'user_sidebar', user: @user
+
+- if @posts.count > 0
+  %section.feed
+    - @posts.each do |post|
+      %article.article
+        = render 'posts/post', post: post
+
+  = will_paginate @posts, :renderer => BootstrapPagination::Rails
+- else
+  %h4= SiteSetting.no_posts_title
+  %p= SiteSetting.no_posts_description
