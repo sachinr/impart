@@ -4,6 +4,11 @@
   = f.control_group :name do |f|
     = f.label :name, class: 'control-label'
     .controls
+      = f.text_field :name, class: 'input-xxlarge'
+      = f.error_messages
+  = f.control_group :username do |f|
+    = f.label :username, class: 'control-label'
+    .controls
       = f.text_field :username, class: 'input-xxlarge'
       = f.error_messages
   = f.control_group :email do |f|

@@ -4,6 +4,6 @@ class UserMailer < ActionMailer::Base
   def comment_notification_email(comment)
     @comment = comment
     post = comment.commentable
-    mail(to: post.user.email, subject: "New comment on #{SiteSetting.site_name}")
+    mail(to: post.user.email, subject: "New comment on '#{SiteSetting.site_name}'")
   end
 end

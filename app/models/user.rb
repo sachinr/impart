@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validate :valid_url
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation,
+  attr_accessible :name, :username, :email, :password, :password_confirmation,
     :remember_me, :avatar, :avatar_cache, :url, :bio
 
   before_save :first_user_is_admin
