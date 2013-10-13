@@ -44,3 +44,26 @@ $ ->
       if xhr.status == 401
         window.location.pathname = '/users/sign_in/'
       console.log $.parseJSON(xhr.responseText).errors
+
+  $(document).on 'focus', '.js-index-create-comment', (e) ->
+    $(e.target).attr('rows', 3)
+    $(e.target).parents('.comment-list').find('.js-index-submit-comment').show()
+
+  $(document).on 'focusout', '.js-index-create-comment', (e) ->
+    unless $(e.target).val() != ''
+      $(e.target).attr('rows', 1)
+      $('.js-index-submit-comment').hide()
+
+  $(document).on 'click', '.js-index-delete-comment', (e) ->
+    e.preventDefault()
+    url = $(e.target).parents('a:first').data('url')
+    parentComment = $(e.target).parents('.comment-list')
+    if confirm('Are you sure?')
+      $.ajax(
+        type: 'POST'
+        url: url
+        data: { _method: 'delete' }
+        dataType: 'json').success(parentComment.remove())
+
+  $(document).on 'click', '.js-show-comment-form', (e) ->
+    $(e.target).parents('.article').find('.comment-form').toggle()

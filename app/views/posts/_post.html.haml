@@ -1,27 +1,57 @@
-%tr
-  %td.vote_count
+.post-container
+  %span.vote_count
     = render 'post_upvote', post: post
-  %td
-    %h4
-      = render 'title', post: post
+  %h4
+    = render 'title', post: post
 
-      - if post.can_be_edited_by(current_user)
-        %span.actions.pull-right
-          %a{href: edit_post_path(post)}
-            %i.icon-pencil
-          %a{href: post_path(post), 'data-confirm' => "Are you sure?", 'data-method' => "delete", 'rel' => "nofollow"}
-            %i.icon-trash
-    %span.post-info-link
-      - if post.description.present? && strip_tags(post.description).present?
-        %a{href: '#', class: 'js-fetch-description visible-desktop'}
-          %i.icon-plus{'data-url' => description_post_path(post)}
-            read more
+    - if post.can_be_edited_by(current_user)
+      %span.actions.pull-right
+        %a{href: edit_post_path(post)}
+          %i.icon-pencil
+        %a{href: post_path(post), 'data-confirm' => "Are you sure?", 'data-method' => "delete", 'rel' => "nofollow"}
+          %i.icon-trash
+  .index-post-description
+    - if post.description.present? && strip_tags(post.description).present?
+      = post.description.html_safe
 
-    %span.post-info-link
+  %span.post-info-link
+    - if post.comment_count > 0
       %a{href: post_path(post)}
         %i.icon-comment
           = post.comment_count
           comments
+    - else
+      %a.js-show-comment-form{href: current_user ? '#' : user_session_path }
+        %i.icon-comment
+          Add comment
 
-    %span.age= "#{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
-    .index-post-description
+  %span.age= "#{time_ago_in_words(post.created_at)} ago by #{post.user_name}"
+
+.index-post-comments
+  - unless post.comments.empty?
+    - post.comments.sort_by_rank.each do |comment|
+      - if comment.deleted?
+        =render 'comments/deleted_comment', comment: comment
+      - else
+        %ul.comment-list
+          %li.comment-displayed.well
+            .comment-content
+              %b= comment.user_name
+              %span.comment-age= "#{time_ago_in_words(comment.created_at)} ago"
+              - if comment.can_be_edited_by(current_user)
+                %a.js-index-delete-comment.pull-right{'data-url' => comment_path(comment), href: '#', 'rel' => "nofollow"}
+                  %i.icon-trash
+              %p= comment.content
+
+
+  - if current_user
+    %ul.comment-list
+      %li.comment-displayed.comment-form.well{style: post.comments.empty? ? 'display: none;' : ''}
+        .comment-content
+          = form_for post.comments.new  do |f|
+            = f.hidden_field :commentable_id
+            = f.hidden_field :commentable_type
+            .control-group
+              .controls
+                = f.text_area :content, class: 'input-block-level js-index-create-comment', placeholder: 'Add a comment', rows: 1
+              = f.submit 'Comment', :class => 'btn btn-primary btn-small js-index-submit-comment js_comment_submit_button', style: 'display: none;'

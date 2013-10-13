@@ -6,7 +6,7 @@
 
       .control-group
         .controls
-          = f.text_area :content, class: 'input-block-level', rows: 6
+          = f.text_area :content, class: 'input-block-level', rows: rows
         = link_to 'Comment', '#', :class => 'btn btn-primary btn-small js_comment_submit_button'
 - else
   %code Please login to comment

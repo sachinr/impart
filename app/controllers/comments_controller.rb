@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(params[:comment])
     comment.user = current_user
     if comment.save!
-      render(partial: "comment", layout: false, locals: {comment: comment})
+      render :create, layout: false, locals: {comment: comment}
     else
       render json: { errors: comment.errors.full_messages }, status: 422
     end
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     comment = current_user.comments.find_by_id(params[:id])
     comment = Comment.find(params[:id]) if comment.nil? && current_user.admin?
     if comment.remove_comment_from_thread
-      render(partial: 'deleted_comment', layout: false, locals: {comment: comment})
+      render nothing: true, status: 200
     end
   end
 end

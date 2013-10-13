@@ -1,7 +1,22 @@
+-if SiteSetting.user_confirmation_required && current_user && current_user.confirmed
+  .post-form
+    = form_for @post, :html => { :class => 'form-inline' } do |f|
+      = f.error_notification
+
+      = f.text_field :url, :class => 'post-input input-xlarge', value: @post.url, placeholder: 'URL (optional)'
+
+      = f.text_field :title, :class => 'post-input input-xlarge', placeholder: 'Title'
+      = link_to 'Suggest title from URL', '#', class: 'js-content-fetcher hidden', data: { url: content_fetcher_index_path }
+
+      .description-editor
+        = f.text_area :description, class: 'text_area redactor', id: 'redactor_content', rows: 6, placeholder: 'Got something to say?'
+
+      = f.submit nil, :class => 'btn btn-primary btn-small'
+
 - if @posts.count > 0
-  %table.table.posts-table
-    %tbody
-      - @posts.each do |post|
+  %section.feed
+    - @posts.each do |post|
+      %article.article
         = render 'post', post: post
 
   = will_paginate @posts, :renderer => BootstrapPagination::Rails

@@ -12,8 +12,6 @@ $(document).ready(
       "fileUpload":"/redactor_rails/documents?" + params,
       "fileGetJson":"/redactor_rails/documents",
       "path":"/assets/redactor-rails",
-      "minHeight":"200",
-      "fixed":true,
-      "css":"style.css"}
+      "css":"application.css"}
   );
 });

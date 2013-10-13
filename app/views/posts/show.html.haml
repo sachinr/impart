@@ -31,7 +31,7 @@
   .row-fluid
     .span5
       .post-comment-form
-        =render 'comments/form', comment: @comment
+        =render 'comments/form', comment: @comment, rows: 6
 
   .comment-listing
     =render 'comments/listing', comments: @comments

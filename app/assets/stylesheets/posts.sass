@@ -9,22 +9,21 @@ td
   &.vote_count
     max-width: 100px
 
-.posts-table
-  tr:first-child td
-    border-top: none
-  td
-    padding: 10px 8px 10px
+.feed
+  width: 90%
+
+.article
+  padding: 16px 0 6px 60px
 
 .post-title
   text-decoration: none
   color: #333332
-  font-size: 20px
-
   i
     font-size: 18px
 
 .post_votes
-  margin: 12px 0px 0 0
+  display: inline-block
+  margin-left: -60px
   width: 40px
   .voted
     color: #f36c3d
@@ -42,18 +41,18 @@ td
   width: 100%
   float: left
 
-.post-comments
-  width: 100%
-  float: left
-
 .post-content
   margin-top: 10px
   margin-left: 20px
   width: 90%
 
 .index-post-description
+  display: block
   .well
     margin-top: 10px
+
+.post-container
+  margin-bottom: 10px
 
 span
   &.age
@@ -82,11 +81,6 @@ span
       border: 1px solid #e1e1e8
       white-space: nowrap
 
-.comment-heading
-  margin-top: 20px
-  padding-top: 20px
-  border-top: 1px solid #e1e1e8 !important
-
 .post-author-card
   position: relative
   width: 170px
@@ -104,5 +98,36 @@ span
     border-radius: 95px
     background: #f2f2f0
 
-.redactor_box
-  height: 400px
+.post-input
+  height: 15px !important
+
+.post-form
+  padding: 4px
+  border-bottom: 1px solid #e1e1e8 !important
+
+  input
+    font-size: 12px
+
+  textarea
+    font-size: 12px
+    margin: 5px 0
+    width: 558px
+
+  form
+    margin-bottom: 10px
+
+  .redactor_box
+    width: 570px
+    min-height: 100px
+
+  .redactor_toolbar
+    height: 18px !important
+    li
+      a
+        height: 10px
+
+  .redactor_editor
+    padding: 10px !important
+
+  .description-editor
+    padding: 5px 0

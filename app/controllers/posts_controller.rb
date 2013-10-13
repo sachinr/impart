@@ -6,21 +6,15 @@ class PostsController < ApplicationController
   end
 
   def index
-    @title = 'Hot Posts'
-    @posts = paginate(Post.all_with_user_votes(current_user))
-    render 'index', layout: 'landing'
+    render_index('Hot Posts', Post.all_with_user_votes(current_user))
   end
 
   def latest
-    @title = 'Latest Posts'
-    @posts = paginate(Post.latest_with_user_votes(current_user))
-    render 'index', layout: 'landing'
+    render_index('Latest Posts', Post.latest_with_user_votes(current_user))
   end
 
   def top
-    @title = 'Top Posts'
-    @posts = paginate(Post.top_with_user_votes(current_user, params[:period]))
-    render 'index', layout: 'landing'
+    render_index('Top Posts', Post.top_with_user_votes(current_user, params[:period]))
   end
 
   def create
@@ -48,6 +42,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def render_index(title, posts)
+    @post = Post.new
+    @title = title
+    @posts = paginate(posts)
+    render 'index', layout: 'landing'
+  end
+
   def paginate(posts)
     posts.paginate(page: params[:page], per_page: Post.per_page)
   end
