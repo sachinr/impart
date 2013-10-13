@@ -42,7 +42,7 @@
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   %span.username.hidden-phone
-                    = current_user.username
+                    = current_user.name
                   %span.badge{'data-toggle' => 'tooltip', title: "Karma (post | comment)"}
                     = "#{current_user.post_karma} | #{current_user.comment_karma}"
                   %b.caret
@@ -51,6 +51,8 @@
                     = link_to 'Logout', destroy_user_session_path, method: 'delete'
                   %li
                     = link_to 'Edit Profile', edit_user_registration_path
+                  %li
+                    = link_to 'View Profile', profile_path(current_user.username)
             - else
               %li{class: active_class('devise/sessions', 'new')}
                 = link_to 'Login', new_user_session_path

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments #do not destroy
   has_many :post_votes, dependent: :destroy
   validate :valid_url
+  validates_format_of :username, with: /^[a-z0-9._-]+$/, message: 'can only contain lowercase letters, numbers and periods'
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :username, :email, :password, :password_confirmation,
