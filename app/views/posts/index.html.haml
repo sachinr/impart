@@ -20,6 +20,14 @@
         = render 'post', post: post
 
   = will_paginate @posts, :renderer => BootstrapPagination::Rails
+  .footer
+    %hr
+    .links.pull-right
+      = link_to 'Having issues?', 'http://github.com/sachinr/impart/issues'
+      = ' | '
+      = link_to 'Feedback', '/posts/1'
+      = " | It's all open source "
+
 - else
   %h4= SiteSetting.no_posts_title
   %p= SiteSetting.no_posts_description
