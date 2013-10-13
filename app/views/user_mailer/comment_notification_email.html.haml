@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      ="#{@comment.user.username} commented on your post"
+    %p
+      ="#{@comment.user.username} posted the following comment on '#{@comment.commentable.title}':"
+      %br/
+    %p
+      ="#{@comment.content}"
+
+    %p
+      = link_to 'View the comment', post_url(@comment.commentable)
+
+    %p
+      Delivered by a Robot

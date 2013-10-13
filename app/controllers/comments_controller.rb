@@ -6,6 +6,9 @@ class CommentsController < ApplicationController
     comment = Comment.new(params[:comment])
     comment.user = current_user
     if comment.save!
+      if comment.commentable_type == 'Post'
+        UserMailer.comment_notification_email(comment).deliver
+      end
       render :create, layout: false, locals: {comment: comment}
     else
       render json: { errors: comment.errors.full_messages }, status: 422
