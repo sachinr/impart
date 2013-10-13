@@ -4,9 +4,9 @@
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %h1
-      ="#{@comment.user.username} commented on your post"
+      ="#{@comment.user.name} commented on a post"
     %p
-      ="#{@comment.user.username} posted the following comment on '#{@comment.commentable.title}':"
+      ="#{@comment.user.name} posted the following comment on '#{@comment.commentable.title}':"
       %br/
     %p
       ="#{@comment.content}"

@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     comment.user = current_user
     if comment.save!
       if comment.commentable_type == 'Post'
-        UserMailer.comment_notification_email(comment).deliver
+        UserMailer.comment_notification_email(comment)
       end
       render :create, layout: false, locals: {comment: comment}
     else
