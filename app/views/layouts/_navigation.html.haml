@@ -9,9 +9,9 @@
                 %a{href: root_url}
                   %i.icon-home
             %li{class: active_class('posts', 'index')}
-              = link_to 'Hot', root_url
-            %li{class: active_class('posts', 'latest')}
-              = link_to 'Latest', latest_posts_url
+              = link_to 'Latest', root_url
+            %li{class: active_class('posts', 'hot')}
+              = link_to 'Hot', hot_posts_url
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", class: active_class('posts', 'top')}
                 Top

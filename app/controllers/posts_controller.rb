@@ -6,6 +6,10 @@ class PostsController < ApplicationController
   end
 
   def index
+    latest
+  end
+
+  def hot
     render_index('Hot Posts', Post.all_with_user_votes(current_user))
   end
 

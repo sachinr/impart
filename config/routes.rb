@@ -27,6 +27,7 @@ Votes::Application.routes.draw do
   resources :inbound_emails
 
   match 'latest' => 'posts#latest', as: 'latest_posts'
+  match 'hot' => 'posts#hot', as: 'hot_posts'
   match 'top/:period' => 'posts#top', as: 'top_posts'
   match 'u/:username' => 'profiles#show', as: 'profile', :constraints => { username: /[\w+\.]+/ }
   root :to => "posts#index"
