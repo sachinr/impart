@@ -1,13 +1,15 @@
-Basic social news site with ideas stolen from HN, Reddit and Telescope
+## Impart
 
-Hoping to turn it into a CMS for these kind of sites
+A really simple app for a closed community (students in a class) to share articles / posts with each other.
 
-WIP
+### Features
+* Easily customization (Site name, tag line, etc.)
+* Posts decay over time (http://www.evanmiller.org/how-not-to-sort-by-average-rating.html)
+* Automatically fetch titles from URLs
+* Profile pages for users
+* Responsive
 
-### Starting a server
-
-```
-rails s --debugger
-```
+### In the wild
+It's being used by Acturial Science students to share information with each other -- impart.herokuapp.com
 
 Creative Commons - Attribution-NonCommercial-ShareAlike 3.0 Unported
